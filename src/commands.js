@@ -1,5 +1,10 @@
 const { program } = require("commander");
 const { input } = require("@inquirer/prompts");
+const {
+  addExpense,
+  getExpenses,
+  summaryExpenses,
+} = require("./controllers/expensesController");
 
 program.version("0.0.1").description("Cli for managing expenses");
 
@@ -25,7 +30,13 @@ const answer = async () => {
   return { title, description, amount };
 };
 program.command("add").action(async () => {
-  await answer();
+  await addExpense(await answer());
+});
+program.command("list").action(async () => {
+  await getExpenses();
+});
+program.command("summary").action(async () => {
+  await summaryExpenses();
 });
 
 program.parse(process.argv);
