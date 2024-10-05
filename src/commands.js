@@ -4,6 +4,8 @@ const {
   addExpense,
   getExpenses,
   summaryExpenses,
+  removeExpense,
+  findExpense,
 } = require("./controllers/expensesController");
 
 program.version("0.0.1").description("Cli for managing expenses");
@@ -37,6 +39,12 @@ program.command("list").action(async () => {
 });
 program.command("summary").action(async () => {
   await summaryExpenses();
+});
+program.command("delete <id>").action(async _id => {
+  await removeExpense(_id);
+});
+program.command("find <text>").action(async text => {
+  await findExpense(text);
 });
 
 program.parse(process.argv);
