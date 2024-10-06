@@ -6,7 +6,7 @@ const addExpense = async expense => {
   await newExpense.save(expense);
   await connection.close();
 
-  console.log("Expense added successfully: ", expense.title);
+  console.log("Expense added successfully:", expense.title);
 };
 
 const getExpenses = async () => {
@@ -47,7 +47,7 @@ const findExpense = async text => {
     $or: [{ title: search }, { description: search }],
   });
   if (expenses.length === 0) {
-    console.log("No expenses found");
+    console.log("Expense not found");
     await connection.close();
     process.exit(0);
   }
